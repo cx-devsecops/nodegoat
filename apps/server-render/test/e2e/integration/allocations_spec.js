@@ -15,7 +15,7 @@ describe('/allocations behaviour', () => {
 
     it('Should redirect if the user has not logged in', () => {
         cy.visitPage('/allocations/1')
-        cy.url().should('include', 'login')
+        cy.url().should('include', 'login') 
     })
 
     it('Should be accesible for a logged user', () => {
