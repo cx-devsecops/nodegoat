@@ -16,7 +16,7 @@ jobs:
           sudo apt install npm
           npm -v
 
-      -name: Download Cx SCA Resolver
+      - name: Download Cx SCA Resolver
         run: |
           mkdir -p sca-resolver; cd sca-resolver
           curl -L -o https://sca-downloads.s3.amazonaws.com/cli/latest/ScaResolver-linux64.tar.gz
