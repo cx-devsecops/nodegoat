@@ -1,0 +1,34 @@
+name: Checkmarx One Scan
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: npm install
+        run: |
+          sudo apt install nodejs
+          node -v
+          sudo apt install npm
+          npm -v
+
+      -name: Download Cx SCA Resolver
+        run: |
+          mkdir -p sca-resolver; cd sca-resolver
+          curl -L -o https://sca-downloads.s3.amazonaws.com/cli/latest/ScaResolver-linux64.tar.gz
+          tar -xvzf ScaResolver-linux64.tar.gz
+
+      - name: Checkmarx One CLI Action
+        uses: checkmarx/ast-github-action@main #Github Action version
+        with:
+          project_name: ${{ github.repository }}
+          cx_tenant: ${{ secrets.CX_TENANT_NAME }}
+          base_uri: ${{ secrets.CX_BASE_URI }}
+          cx_client_id: ${{ secrets.CX_CLIENT_ID }}
+          cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
+          branch: ${{ github.ref }}
+          additional_params: ''
