@@ -9,12 +9,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-#      - name: npm install
-#        run: |
-#          sudo apt install nodejs
-#          node -v
-#          sudo apt install npm
-#          npm -v
+      - name: npm install
+        run: |
+          sudo apt install nodejs
+          node -v
+          sudo apt install npm
+          npm -v
 
       - name: Download Cx SCA Resolver
         run: |
@@ -31,4 +31,4 @@ jobs:
           cx_client_id: ${{ secrets.CX_CLIENT_ID }}
           cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
           branch: ${{ github.ref }}
-          additional_params: ''
+          additional_params: '--sca-resolver sca-resolver/ScaResolver'
